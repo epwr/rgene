@@ -24,7 +24,7 @@ The flags that rgene recognizes are:
 
 ## Design Ideation
 
-This isn't a roadmap, this is just some ideas on how to design rgen.
+This isn't a roadmap, this is just some ideas on how to design rgene.
 
 ### Default Output
 
@@ -75,8 +75,8 @@ strings that would be run to generate the folder structure when run as commands.
 Maybe have `"cat @/assets/template.gemspec > project/project.gemspec"` where the
 @ symbol is actually turned into the path to the assets folder.
 
-### Numerical Flags Specify options
+### Capital Flags Specify options
 
-Eventually, it would be nice to allow `rgene r2ate` to set the project up with a
-different Rakefile than `rgene rate` would. Disallowing (to start) numbers to be
-used as flags would allow this to be added later on.
+Eventually, it would be nice to allow `rgene rGate` to set the project up with a
+different Rakefile than `rgene rate` would. Disallowing (to start) capital
+letters to be used as flags would allow this to be added later on.
