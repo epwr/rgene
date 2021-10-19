@@ -63,4 +63,5 @@ call the function for `ra`, but not the function for `r` or `a`.
 
 There should be a function for each option. The function should return a list of
 strings that would be run to generate the folder structure when run as commands.
-Maybe have `"cat @/assets/template.gemspec > project/project.gemspec"`
+Maybe have `"cat @/assets/template.gemspec > project/project.gemspec"` where the
+@ symbol is actually turned into the path to the assets folder.
