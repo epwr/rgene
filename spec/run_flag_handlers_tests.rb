@@ -1,4 +1,5 @@
-
+# Tests for the functions that run the flag handlers (not the functions in the
+# test handlers themselves).
 
 # Imports
 require_relative '../src/lib/run_flag_handlers'
