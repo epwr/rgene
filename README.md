@@ -15,10 +15,12 @@ The flags that rgene recognizes are:
 - a : app (command line app & gem files)
 - t : testing framework (rspec)
 - e : easy (no confirm)
-- v : verbose (ask me yes/no to all the main options) -- error if combined with e
+- v : verbose (ask me yes/no to all the main options). error if combined with e
 - b : bundler
 - g : run git --init (have ability to set upstream)
 - h : help. If set, print help message and exit
+- l : license (default = ask, 1 = MIT, maybe a few others.)
+- s : show. Show all the flags, and their options
 
 ## Design Ideation
 
@@ -59,9 +61,22 @@ Where it iterates through, and calls the functions when flags match. Another way
 would be to have each flag match only the most complex flag group. So `ra` would
 call the function for `ra`, but not the function for `r` or `a`.
 
+Note: Go with the second way above - because when building the rakefile, we need
+to know that the `rake gem:build` option needs to exist.
+
+`/ra/` is more specific than `/r/` or `/a/`, and because `r2` does not match any
+patterns with only `r` there is no need to worry about whether a `/r2a/` flag or
+a `/ra2/` flag should be called.
+
 ### Functional Design
 
 There should be a function for each option. The function should return a list of
 strings that would be run to generate the folder structure when run as commands.
 Maybe have `"cat @/assets/template.gemspec > project/project.gemspec"` where the
 @ symbol is actually turned into the path to the assets folder.
+
+### Numerical Flags Specify options
+
+Eventually, it would be nice to allow `rgene r2ate` to set the project up with a
+different Rakefile than `rgene rate` would. Disallowing (to start) numbers to be
+used as flags would allow this to be added later on.
