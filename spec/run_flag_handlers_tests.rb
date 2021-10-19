@@ -1,7 +1,7 @@
 
 
 # Imports
-require_relative '../src/lib/flag_handler'
+require_relative '../src/lib/run_flag_handlers'
 
 describe "Flag Handler" do
 
