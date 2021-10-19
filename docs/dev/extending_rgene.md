@@ -39,6 +39,8 @@ Developing new Handlers".
   - Keep your handler pure (eg. don't directly call commands, only return them).
   - Only create files using the `touch` and `mkdir` commands, or by using `>` or
     `>>` to redirect output into a new file.
+  - Use the custom errors (described in docs/dev/rgene_errors.rb) to let `rgene`
+    give the user more information on how to fix the issue.
 
 # Details for Developing new Handlers
 
