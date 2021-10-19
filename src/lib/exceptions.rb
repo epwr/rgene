@@ -8,4 +8,3 @@ class RGeneError < StandardError; end
 
 # Specific Errors
 class DirectoryExistsError < RGeneError; end
-class NotImplementedError < RGeneError; end
