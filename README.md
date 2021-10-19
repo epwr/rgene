@@ -11,8 +11,8 @@ using the optparse gem.
 
 The flags that rgene recognizes are:
 
-- r : rake
-- a : app (command line app & gem files)
+- r : rake (includes commands to build a gem)
+- a : app (command line app)
 - t : testing framework (rspec)
 - e : easy (no confirm)
 - v : verbose (ask me yes/no to all the main options). error if combined with e
@@ -21,6 +21,7 @@ The flags that rgene recognizes are:
 - h : help. If set, print help message and exit
 - l : license (default = ask, 1 = MIT, maybe a few others.)
 - s : show. Show all the flags, and their options
+- h : here. Build a script in this directory (or combine with `a`)
 
 ## Design Ideation
 
