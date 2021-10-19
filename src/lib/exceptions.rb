@@ -6,8 +6,6 @@
 # gem
 class RGeneError < StandardError; end
 
-class DirectoryExistsError < RGeneError
-  def initialize msg="This directory already exists"
-    super
-  end
-end
+# Specific Errors
+class DirectoryExistsError < RGeneError; end
+class NotImplementedError < RGeneError; end
