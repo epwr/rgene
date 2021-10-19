@@ -16,5 +16,5 @@ end
 #
 #
 def get_help
-  "Creates a simple Ruby script file."
+  "Creates a simple Ruby script file (in the current directory)."
 end

@@ -9,9 +9,31 @@ describe "Flag Handler: _.rb" do
 
   it "should create a Ruby file from @script_template." do
     config = {project: 'test_prj'}
-    new_config, commands = get_commands(config, nil)
+    new_config, commands = get_commands(config)
     expect(new_config).to eq(config)
     expect(commands).to eq(["cat @script_template.rb > test_prj.rb"])
+  end
+
+  after(:context) do
+    Object.remove_method(:get_commands)
+    Object.remove_method(:get_help)
+  end
+
+end
+
+
+
+describe "Flag Handler: a.rb" do
+
+  before(:context) do
+    load "#{__dir__}/../src/flag_handlers/a.rb"
+  end
+
+  it "should create a Ruby file from @script_template." do
+    config = {project: 'test_prj'}
+    new_config, commands = get_commands(config)
+    expect(new_config).to eq(config)
+    expect(commands).to eq(["cat @app_template.rb > test_prj.rb"])
   end
 
   after(:context) do
