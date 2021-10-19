@@ -17,7 +17,7 @@ describe "Flag Handler" do
       :make_directory = false,
       :project = 'test_prj',
     }
-    expect(flag_handler config, nil).to eq(["cat @simple_script.erb > test_prj.rb"])
+    expect(gen_commands config, nil).to eq(["cat @simple_script.erb > test_prj.rb"])
   end
 
   it "should be able to list commands to create a project directory and simple script." do
@@ -26,7 +26,7 @@ describe "Flag Handler" do
       :make_directory = true,
       :project = 'test_prj',
     }
-    expect(flag_handler config, nil).to eq(["mkdir test_prj", "cat @simple_script.erb > test_prj/test_prj.rb"])
+    expect(gen_commands config, nil).to eq(["mkdir test_prj", "cat @simple_script.erb > test_prj/test_prj.rb"])
   end
 
   it "should raise an error if making a directory that already exists." do
@@ -35,9 +35,9 @@ describe "Flag Handler" do
       :make_directory = true,
       :project = 'src',
     }
-    expect{flag_handler config, nil}.to raise_error
+    expect{gen_commands config, nil}.to raise_error
   end
 
-  
+
 
 end
