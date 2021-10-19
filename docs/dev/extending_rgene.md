@@ -37,8 +37,8 @@ Developing new Handlers".
   - Take in a configuration Hash and return an updated configuration Hash, and a
     list of commands.
   - Keep your handler pure (eg. don't directly call commands, only return them).
-  - Only create files using the `touch` command, or by directing input using the
-    `>` or `>>` operators.
+  - Only create files using the `touch` and `mkdir` commands, or by using `>` or
+    `>>` to redirect output into a new file.
 
 # Details for Developing new Handlers
 
