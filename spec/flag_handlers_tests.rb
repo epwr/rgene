@@ -27,7 +27,6 @@ describe "All Flag Handlers" do
 end
 
 
-
 describe "_.rb - Flag Handler" do
 
   before(:context) do

@@ -2,7 +2,7 @@
 # test handlers themselves).
 
 # Imports
-require_relative '../src/lib/run_flag_handlers'
+require_relative '../src/lib/get_commands'
 
 describe "Command Generator (gen_commands from run_flag_handlers.rb)" do
 

@@ -18,6 +18,7 @@ def get_commands config
     config[:state][:dir_made] = true
   end
   commands << "cat @app_template.rb > #{config[:project]}/#{config[:project]}.rb"
+  config[:state][:main_script] = true
   [config, commands]
 end
 
