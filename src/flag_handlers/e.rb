@@ -17,7 +17,6 @@ def get_commands config
     config[:state][:dir_made] = true
   end
   commands << "cat @script_template.rb > #{config[:project]}/#{config[:project]}.rb"
-  config[:state][:main_script] = true
   [config, commands]
 end
 
@@ -26,7 +25,7 @@ end
 #
 # Returns the discription of this flag (to display in the help message)
 def get_help
-  "Creates a simple Ruby script file (in the current directory)."
+  "Don't confirm the project state before creating the project."
 end
 
 
@@ -35,5 +34,6 @@ end
 # Adds fields to the config file that tell other flags to include certain
 # things.
 def setup_config config
+  config[:confirmation] = "none"
   config
 end

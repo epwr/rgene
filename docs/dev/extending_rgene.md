@@ -42,6 +42,12 @@ Developing new Handlers".
   - Use the custom errors (described in docs/dev/rgene_errors.rb) to let `rgene`
     give the user more information on how to fix the issue.
 
+## Some Suggestions
+
+- *Use `>>` instead of `>`:* when possible. For example, when adding commands to
+  a Rakefile if you write to it from multiple flag handlers, then you won't
+  overwrite different commands.
+
 # Details for Developing new Handlers
 
 ## Format of Command Strings

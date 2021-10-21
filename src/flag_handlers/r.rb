@@ -3,7 +3,8 @@
 # Author: Eric Power
 #
 # Description:
-#     The default handler for when no flags are set.
+#     The handler for the `r` flag. Sets up a Rakefile that has a gem: namespace
+#      which can be used to build, install, and push a gem.
 
 
 # get_commands
@@ -16,8 +17,7 @@ def get_commands config
     commands << "mkdir #{config[:project]}"
     config[:state][:dir_made] = true
   end
-  commands << "cat @script_template.rb > #{config[:project]}/#{config[:project]}.rb"
-  config[:state][:main_script] = true
+  commands << "cat @r_Rakefile.erb > #{config[:project]}/Rakefile"
   [config, commands]
 end
 
@@ -26,7 +26,7 @@ end
 #
 # Returns the discription of this flag (to display in the help message)
 def get_help
-  "Creates a simple Ruby script file (in the current directory)."
+  "Sets up a Rakefile with the basics, including commands to publish a Gem."
 end
 
 

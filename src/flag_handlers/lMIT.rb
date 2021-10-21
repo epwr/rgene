@@ -3,7 +3,8 @@
 # Author: Eric Power
 #
 # Description:
-#     The default handler for when no flags are set.
+#     The handler for the `lMIT` flag. Sets up the project to include the MIT
+#     License in it's root.
 
 
 # get_commands
@@ -16,8 +17,7 @@ def get_commands config
     commands << "mkdir #{config[:project]}"
     config[:state][:dir_made] = true
   end
-  commands << "cat @script_template.rb > #{config[:project]}/#{config[:project]}.rb"
-  config[:state][:main_script] = true
+  commands << "cat @license_MIT.rb > #{config[:project]}/LICENSE"
   [config, commands]
 end
 
@@ -26,7 +26,7 @@ end
 #
 # Returns the discription of this flag (to display in the help message)
 def get_help
-  "Creates a simple Ruby script file (in the current directory)."
+  "Creates an MIT License in the project root."
 end
 
 
@@ -35,5 +35,6 @@ end
 # Adds fields to the config file that tell other flags to include certain
 # things.
 def setup_config config
-  config
+  config[:r_license] = "MIT"
+  config[:request][:name] = true  # req_ configurations require user input.
 end

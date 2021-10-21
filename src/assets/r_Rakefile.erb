@@ -1,0 +1,65 @@
+<%= if config[:r_rspec] %>
+desc "Run the tests in the spec/ directory."
+task :test do
+  sh "rspec spec/*"
+end
+<% end %>
+
+<%= if config[:r_gem] %>
+namespace "gem" do
+
+  desc 'Validates that the version number is appropriately set (v=X.X)'
+  task :validate_version do
+    if ENV['v'].nil? or not ENV['v'].match(/^\d+[\.\d+]+$/)
+      raise "Error: the task requires a version number (set with 'v=X.X')."
+    end
+  end
+
+  desc "Builds the .gemspec file."
+  task :spec => %w[validate_version] do
+    # Expect ARGV to be the version number
+
+    gemspec = File.new("<%= config[:project] %>.gemspec", "w")
+    gemspec.puts "Gem::Specification.new do |s|"
+    gemspec.puts "  s.name        = '<%= config[:project] %>'"
+    gemspec.puts "  s.version     = '#{ENV['v']}'"
+    gemspec.puts "  s.executables << '<%= config[:project] %>'"
+    <%= if config[:r_license] == "MIT" %>gemspec.puts "  s.licenses    = ['MIT']"
+    <% end %>
+    gemspec.puts "  s.summary     = ''"
+    gemspec.puts "  s.authors     = ['<%= config[:info][:name] if config[:info] %>']"
+    gemspec.puts "  s.email       = ''"
+    gemspec.puts "  s.required_ruby_version = '>= 2.6'"
+    gemspec.puts "  s.files       = Dir['src/*.rb'] + Dir['src/lib/*.rb']
+    gemspec.puts "  s.homepage    = ''"
+    gemspec.puts "  s.add_development_dependency 'rake', '~>13'"
+    <%= if config[:r_rspec] %>gemspec.puts "  s.add_development_dependency 'rspec', '~>3'"
+    <% end %>
+    gemspec.puts "end"
+    gemspec.close
+  end
+
+  desc "builds a gem based on the gemspec."
+  task :build do
+    sh "gem build <%= config[:project] %>.gemspec"
+  end
+
+  desc "installs the gem locally"
+  task :install => %w[validate_version] do
+    sh "sudo gem install <%= config[:project] %>-#{ENV['v']}.gem"
+  end
+
+  desc "pushes a gem to rubygems.org"
+  task :push => %w[validate_version] do
+    sh "gem push <%= config[:project] %>-#{ENV['v']}.gem"
+  end
+
+  desc "Cleans up the .gem files."
+  task :clean do
+    Dir['*.gem'].each { |file|
+      sh "rm " + file
+    }
+  end
+
+end
+<% end %>
